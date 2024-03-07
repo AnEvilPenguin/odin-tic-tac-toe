@@ -7,5 +7,29 @@ function makeGameBoard () {
         makeRow(),
         makeRow(),
     ]
-    return board;
+
+    const playToken = (x, y, token) => {
+        const space = board[y][x];
+
+        if (space) {
+            throw new Error('Space already full');
+        }
+
+        board[y][x] = token;
+    };
+
+    return {
+        board,
+        playToken
+    };
 }
+
+function makePlayer (name, token) {
+    const player = {
+        name,
+        token
+    }
+    
+    return player;
+}
+
