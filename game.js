@@ -1,5 +1,5 @@
 
-function makeGameBoard () {
+function makeGameBoard() {
     const makeRow = () => new Array(3);
 
     const board = [
@@ -24,12 +24,35 @@ function makeGameBoard () {
     };
 }
 
-function makePlayer (name, token) {
+function makePlayer(name, token) {
     const player = {
         name,
         token
     }
-    
+
     return player;
+}
+
+function makeGameController() {
+    const player1 = makePlayer('Player 1', 1);
+    const player2 = makePlayer('Player 2', 2);
+
+    const { board, playToken } = makeGameBoard();
+
+    let currentPlayer = player1;
+    const setNextPlayer = () => currentPlayer === player1 ?
+        currentPlayer = player2 :
+        currentPlayer = player1;
+
+    const makePlay = (x, y) => {
+        playToken(x, y, currentPlayer.token);
+        // TODO check if player won
+        setNextPlayer();
+    };
+
+    return {
+        board,
+        makePlay,
+    };
 }
 
