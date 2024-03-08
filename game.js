@@ -100,3 +100,5 @@ function makeGameController() {
         checkWin,
     };
 }
+
+const bg = makeGameController();
