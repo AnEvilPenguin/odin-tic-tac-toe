@@ -33,9 +33,9 @@ function makePlayer(name, token) {
     return player;
 }
 
-function makeGameController() {
-    const player1 = makePlayer('Player 1', 1);
-    const player2 = makePlayer('Player 2', 2);
+function makeGameController(player1Name = 'Player 1', player2Name = 'Player 2') {
+    const player1 = makePlayer(player1Name, 1);
+    const player2 = makePlayer(player2Name, 2);
 
     const { board, playToken } = makeGameBoard();
 
