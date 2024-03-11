@@ -50,16 +50,18 @@ function makeGameController(player1Name = 'Player 1', player2Name = 'Player 2') 
         return unique.length === 1 && unique[0] != null;
     }
 
+    /* diag1 top left to bottom right */
     const getDiagonal1 = () => [board[0][0], board[1][1], board[2][2]];
+    /* dag2 top right to bottom left */
     const getDiagonal2 = () => [board[0][2], board[1][1], board[2][0]];
 
     const checkWin = (x, y) => {
-
         const rowWin = checkArray(board[y]);
         const columnWin = checkArray(board.map(r => r[x]));
         let diag1Win;
         let diag2Win;
 
+        // only need to check diagonals when a relevant space is occupied
         if (x - y === 0) {
             diag1Win = checkArray(getDiagonal1());
         }
