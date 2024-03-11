@@ -106,4 +106,3 @@ function makeGameController(player1Name = 'Player 1', player2Name = 'Player 2') 
     };
 }
 
-const bg = makeGameController();
