@@ -17,6 +17,8 @@ for (let y = 0; y < 3; y++) {
             const token = controller.getSpace(x, y);
             console.log(token);
 
+            space.textContent = token === 1 ? 'X' : 'O';
+
             space.removeEventListener("click", onClick);
         };
 
