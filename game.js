@@ -11,7 +11,7 @@ function makeGameController(player1Name = 'Player 1', player2Name = 'Player 2') 
     const player1 = makePlayer(player1Name, 1);
     const player2 = makePlayer(player2Name, 2);
 
-    const { board, playToken } = (() => {
+    const { board, playToken, getSpace } = (() => {
         const makeRow = () => new Array(3);
 
         const board = [
@@ -30,9 +30,12 @@ function makeGameController(player1Name = 'Player 1', player2Name = 'Player 2') 
             board[y][x] = token;
         };
 
+        const getSpace = (x, y) => board[y][x];
+
         return {
             board,
-            playToken
+            getSpace,
+            playToken,
         };
     })();
 
@@ -40,7 +43,7 @@ function makeGameController(player1Name = 'Player 1', player2Name = 'Player 2') 
     const setNextPlayer = () => currentPlayer === player1 ?
         currentPlayer = player2 :
         currentPlayer = player1;
-    
+
     const checkArray = (arr) => {
         if (!Array.isArray(arr)) {
             throw new Error('Must provide valid array');
@@ -78,7 +81,7 @@ function makeGameController(player1Name = 'Player 1', player2Name = 'Player 2') 
             win: rowWin || columnWin || diag1Win || diag2Win,
         };
     }
-    
+
     let round = 0;
 
     const makePlay = (x, y) => {
@@ -96,12 +99,13 @@ function makeGameController(player1Name = 'Player 1', player2Name = 'Player 2') 
                 tieGame: true,
             };
         }
-        
+
         setNextPlayer();
     };
 
     return {
         board,
+        getSpace,
         makePlay,
     };
 }

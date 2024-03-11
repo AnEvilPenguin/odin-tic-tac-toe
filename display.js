@@ -14,8 +14,7 @@ for (let y = 0; y < 3; y++) {
             const result = controller.makePlay(x, y);
             console.log(result);
 
-            const token = controller.board[y][x];
-            // TODO replace this with function...
+            const token = controller.getSpace(x, y);
             console.log(token);
 
             space.removeEventListener("click", onClick);
