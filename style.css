@@ -43,3 +43,8 @@ body {
 footer {
     margin-top: auto;
 }
+
+.template {
+    visibility: hidden;
+    display: none;
+}
