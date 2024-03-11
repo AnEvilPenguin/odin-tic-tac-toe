@@ -76,8 +76,11 @@ function makeGameController(player1Name = 'Player 1', player2Name = 'Player 2') 
             win: rowWin || columnWin || diag1Win || diag2Win,
         };
     }
+    
+    let round = 0;
 
     const makePlay = (x, y) => {
+        round++;
         playToken(x, y, currentPlayer.token);
         const winDetails = checkWin(x, y);
 
@@ -85,6 +88,10 @@ function makeGameController(player1Name = 'Player 1', player2Name = 'Player 2') 
             return {
                 ...currentPlayer,
                 ...winDetails,
+            };
+        } else if (round === 9) {
+            return {
+                tieGame: true,
             };
         }
         
