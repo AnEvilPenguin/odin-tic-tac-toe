@@ -1,5 +1,6 @@
 :root {
     --space-size: min(25vh, 25vw);
+    --svg-size: min(23vh, 23vw);
 }
 
 body {
@@ -38,6 +39,17 @@ body {
     min-height: var(--space-size);
     min-width: var(--space-size);
     background-color: goldenrod;
+
+    padding: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+svg {
+    width: var(--svg-size);
+    height: var(--svg-size);
 }
 
 footer {

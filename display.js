@@ -1,7 +1,9 @@
 
 (() => {
     const button = document.querySelector(".status button");
-    console.log(button);
+
+    const cross = document.querySelector(".cross");
+    const nought = document.querySelector(".nought");
 
     const startGame = () => {
         const controller = makeGameController();
@@ -9,7 +11,7 @@
         const board = document.querySelector(".board");
         const statusText = document.querySelector(".status p");
 
-        statusText.textContent = "Player 1s Turn"; 
+        statusText.textContent = "Player 1s Turn";
 
         // clears all child nodes
         board.textContent = "";
@@ -37,7 +39,10 @@
 
                     const token = controller.getSpace(x, y);
 
-                    space.textContent = token === 1 ? "X" : "O";
+                    const clone = (token === 1 ? cross : nought).cloneNode(true);
+
+                    [...clone.classList].forEach(name => clone.classList.remove(name));
+                    space.appendChild(clone);
 
                     if (controller.isWin(x, y)) {
                         console.log("Winner");
