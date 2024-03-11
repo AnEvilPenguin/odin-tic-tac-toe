@@ -1,43 +1,40 @@
 
-function makeGameBoard() {
-    const makeRow = () => new Array(3);
-
-    const board = [
-        makeRow(),
-        makeRow(),
-        makeRow(),
-    ]
-
-    const playToken = (x, y, token) => {
-        const space = board[y][x];
-
-        if (space) {
-            throw new Error('Space already full');
+function makeGameController(player1Name = 'Player 1', player2Name = 'Player 2') {
+    const makePlayer = (name, token) => {
+        const player = {
+            name,
+            token
         }
 
-        board[y][x] = token;
-    };
-
-    return {
-        board,
-        playToken
-    };
-}
-
-function makePlayer(name, token) {
-    const player = {
-        name,
-        token
+        return player;
     }
-
-    return player;
-}
-
-function makeGameController(player1Name = 'Player 1', player2Name = 'Player 2') {
     const player1 = makePlayer(player1Name, 1);
     const player2 = makePlayer(player2Name, 2);
 
-    const { board, playToken } = makeGameBoard();
+    const { board, playToken } = (() => {
+        const makeRow = () => new Array(3);
+
+        const board = [
+            makeRow(),
+            makeRow(),
+            makeRow(),
+        ]
+
+        const playToken = (x, y, token) => {
+            const space = board[y][x];
+
+            if (space) {
+                throw new Error('Space already full');
+            }
+
+            board[y][x] = token;
+        };
+
+        return {
+            board,
+            playToken
+        };
+    })();
 
     let currentPlayer = player1;
     const setNextPlayer = () => currentPlayer === player1 ?
@@ -97,7 +94,6 @@ function makeGameController(player1Name = 'Player 1', player2Name = 'Player 2') 
     return {
         board,
         makePlay,
-        checkWin,
     };
 }
 
